@@ -57,12 +57,13 @@ install() {
     $cmd install wget -y
     $cmd install net-tools -y
     
-     mkdir /aleo      
+    mkdir /root/aleo
     inst_tunnel_cn
     inst_driver
     inst_cuda
     inst_aleo_f2_cn
 }
+
 
 
 
@@ -73,11 +74,11 @@ uninstall() {
         echo -e "\n" 
         echo -e "\n" 
         echo -e "\n" 
-        echo "正在卸载......"
-        systemctl stop mh_tunnel  &
-        systemctl disable mh_tunnel  >> /dev/null
-        rm -rf /root/mh_tunnel
-        rm -rf /lib/systemd/system/mh_tunnel.service
+        echo "正在卸载aleo挖矿软件......"
+        systemctl stop mh_aleol  &
+        systemctl disable mh_aleo  >> /dev/null
+        rm -rf /aleo
+        rm -rf /lib/systemd/system/mh_aleo.service
         echo "卸载完记得重启"
 }
 
@@ -162,14 +163,13 @@ inst_aleo_f2_cn(){
 
     systemctl stop mh_aleo  >> /dev/null
     killall aleo-prover-cuda
-
                                                         
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo.sh   -O  /aleo/aleo.sh
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/inst.sh   -O  /aleo/inst.sh
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo.sh   -O  /root/aleo/aleo.sh
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/inst.sh   -O  /root/aleo/inst.sh
     wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/mh_aleo.service   -O  /lib/systemd/system/mh_aleo.service
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo-prover-cuda   -O  /aleo/aleo-prover-cuda
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo-prover-cuda   -O  /root/aleo/aleo-prover-cuda
     
-    chmod +x /aleo/*
+    chmod +x /root/aleo/*
     systemctl daemon-reload
     systemctl enable mh_aleo  >> /dev/null
     systemctl restart mh_aleo  &   

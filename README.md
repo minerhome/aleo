@@ -1,12 +1,12 @@
 ## aleo 鱼池 挖矿
 # 安装说明
 # 先要把实体机 ubuntu server安装好
-# 自动安装加密隧道以及安装鱼池的挖矿软件, 安装在/aleo目录下
+# 自动安装加密隧道以及安装鱼池的挖矿软件, 安装在/root/aleo目录下
 # 查看安装驱动, cuda成功
 ```nvidia-smi```
 
 # 查看挖矿情况 
-```tail -f /aleo/prover.log```
+```tail -f /root/aleo/prover.log```
 
 
 
