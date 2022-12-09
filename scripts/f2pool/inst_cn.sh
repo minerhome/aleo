@@ -65,7 +65,7 @@ install() {
     wget  --no-check-certificate  http://down.minerhome.org/aleo/data/aleo.sh   -O  /root/aleo/aleo.sh
     wget  --no-check-certificate  http://down.minerhome.org/aleo/data/mh_aleo.service   -O  /lib/systemd/system/mh_aleo.service
     
-    inst_tunnel_cn
+    # inst_tunnel_cn
     inst_driver
     inst_cuda
 
@@ -209,6 +209,7 @@ echo "默认安装到 /root/aleo"
 echo "安装完成后请自己修改你的挖矿帐号"
 echo "查看挖矿情况  tail -f /root/aleo/prover.log"
 echo "如果安装不成功，则重启服务器后重新安装"
+echo "要提前手动安装加密隧道 bash <(curl -s -L down.minerhome.org/mh_tunnel/scripts/tunnel/inst_tunnel_cn.sh) "
 echo "出现各种选择，请按 确认/OK"
 echo "  1、安装(默认安装到/root/aleo) - 安装完记得重启服务器 - 软件开机会自动启动，后台守护运行"
 echo "  2、卸载 - 删除本软件"
