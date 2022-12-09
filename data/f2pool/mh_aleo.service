@@ -1,0 +1,27 @@
+
+[Unit]
+Description=aleo - f2pool - minerhome
+After=network-online.target
+Wants=network-online.target
+
+
+[Service]
+Type=forking
+
+WorkingDirectory=/aleo
+ExecStart=/aleo/aleo.sh
+
+TimeoutSec=0
+RemainAfterExit=yes
+
+User=root
+Group=root
+
+Restart=always
+RestartSec=10s
+# Restart=on-failure
+
+
+[Install]
+WantedBy=multi-user.target
+
