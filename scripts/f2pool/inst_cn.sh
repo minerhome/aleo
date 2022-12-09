@@ -57,12 +57,10 @@ install() {
     $cmd install wget -y
     $cmd install net-tools -y
     
-     mkdir /aleo  
-     
-    inst_driver_cn
-    inst_cuda_cn
+     mkdir /aleo      
     inst_tunnel_cn
-   
+    inst_driver
+    inst_cuda
     inst_aleo_f2_cn
 }
 
