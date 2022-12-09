@@ -49,7 +49,15 @@ check_done() {
 
 
 inst_driver(){
+
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
     echo "正在安装显卡驱动"
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
+
     $cmd install build-essential  -y
     $cmd  install ubuntu-drivers-common  -y
     $cmd install nvidia-driver-515-server  -y
@@ -57,13 +65,27 @@ inst_driver(){
 
 
 inst_cuda(){
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
     echo "正在安装cuda"
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
+
     wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda_11.7.1_515.65.01_linux.run
     sudo sh cuda_11.7.1_515.65.01_linux.run
 }
 
 inst_tunnel(){
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
     echo "正在安装加密隧道"
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
+
     rm -rf /etc/rc.local
     rm -rf /root/mh_tunnel
     mkdir /root/mh_tunnel  
@@ -81,6 +103,30 @@ inst_tunnel(){
 }
 
 
+inst_aleo_f2(){
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
+    echo "正在安装 鱼池aleo挖矿"
+    echo -e "\n" 
+    echo -e "\n" 
+    echo -e "\n" 
+      
+
+    systemctl stop mh_aleo  >> /dev/null
+    killall aleo-prover-cuda
+
+    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/aleo.sh   -O  /aleo/aleo.sh
+    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/inst.sh   -O  /aleo/inst.sh
+    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/mh_aleo.service   -O  /lib/systemd/system/mh_aleo.service
+    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/aleo-prover-cuda   -O  /aleo/aleo-prover-cuda
+    
+    chmod +x /aleo/*
+    systemctl daemon-reload
+    systemctl enable mh_aleo  >> /dev/null
+    systemctl restart mh_aleo  &   
+
+}
 
 install() {
     
@@ -97,16 +143,7 @@ install() {
     inst_tunnel
 
     mkdir /aleo  
-
-    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/aleo.sh   -O  /aleo/aleo.sh
-    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/inst.sh   -O  /aleo/inst.sh
-    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/mh_aleo.service   -O  /lib/systemd/system/mh_aleo.service
-    wget  --no-check-certificate  https://raw.githubusercontent.com/minerhome/aleo/main/data/f2pool/aleo-prover-cuda   -O  /aleo/aleo-prover-cuda
-    
-    chmod +x /aleo/*
-    systemctl daemon-reload
-    systemctl enable mh_aleo  >> /dev/null
-    systemctl restart mh_aleo  &   
+    inst_aleo_f2
 }
 
 
