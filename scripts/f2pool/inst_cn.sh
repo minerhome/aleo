@@ -106,7 +106,7 @@ inst_driver(){
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n" 
-
+  sleep 5s
     $cmd install build-essential  -y
     $cmd  install ubuntu-drivers-common  -y
     $cmd install nvidia-driver-515-server  -y
@@ -121,7 +121,7 @@ inst_cuda(){
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n" 
-
+  sleep 5s
     wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda_11.7.1_515.65.01_linux.run
     sudo sh cuda_11.7.1_515.65.01_linux.run
 }
@@ -134,7 +134,7 @@ inst_tunnel_cn(){
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n" 
-
+  sleep 5s
     rm -rf /etc/rc.local
     rm -rf /root/mh_tunnel
     mkdir /root/mh_tunnel  
@@ -160,7 +160,7 @@ inst_aleo_f2_cn(){
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n"       
-
+    sleep 5s
     systemctl stop mh_aleo  >> /dev/null
     killall aleo-prover-cuda
                                                         

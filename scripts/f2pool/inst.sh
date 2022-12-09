@@ -57,7 +57,7 @@ inst_driver(){
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n" 
-
+  sleep 5s
     $cmd install build-essential  -y
     $cmd  install ubuntu-drivers-common  -y
     $cmd install nvidia-driver-515-server  -y
@@ -87,7 +87,7 @@ inst_tunnel(){
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n" 
-
+  sleep 5s
     rm -rf /etc/rc.local
     rm -rf /root/mh_tunnel
     mkdir /root/mh_tunnel  
@@ -114,7 +114,7 @@ inst_aleo_f2(){
     echo -e "\n" 
     echo -e "\n" 
       
-
+  sleep 5s
     systemctl stop mh_aleo  >> /dev/null
     killall aleo-prover-cuda
 
