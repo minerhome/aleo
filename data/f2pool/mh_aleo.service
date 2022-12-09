@@ -8,8 +8,8 @@ Wants=network-online.target
 [Service]
 Type=forking
 
-WorkingDirectory=/aleo
-ExecStart=/aleo/aleo.sh
+WorkingDirectory=/root/aleo
+ExecStart=/root/aleo/aleo.sh
 
 TimeoutSec=0
 RemainAfterExit=yes

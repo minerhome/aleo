@@ -77,7 +77,7 @@ uninstall() {
         echo "正在卸载aleo挖矿软件......"
         systemctl stop mh_aleol  &
         systemctl disable mh_aleo  >> /dev/null
-        rm -rf /aleo
+        rm -rf /root/aleo
         rm -rf /lib/systemd/system/mh_aleo.service
         echo "卸载完记得重启"
 }
