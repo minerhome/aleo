@@ -69,10 +69,12 @@ inst_cuda(){
     echo -e "\n" 
     echo -e "\n" 
     echo "正在安装cuda"
+    echo "出现Abort Continue时, 可以选择 Abort"
     echo -e "\n" 
     echo -e "\n" 
     echo -e "\n" 
-
+    sleep 5s
+    
     wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda_11.7.1_515.65.01_linux.run
     sudo sh cuda_11.7.1_515.65.01_linux.run
 }
