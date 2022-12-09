@@ -48,6 +48,8 @@ check_done() {
 }
 
 
+
+
 install() {
     
     # ufw disable
@@ -58,10 +60,24 @@ install() {
     $cmd install net-tools -y
     
     mkdir /root/aleo
+    mkdir /root/aleo/f2pool
+
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/aleo.sh   -O  /root/aleo/aleo.sh
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/mh_aleo.service   -O  /lib/systemd/system/mh_aleo.service
+    
     inst_tunnel_cn
     inst_driver
     inst_cuda
+
     inst_aleo_f2_cn
+
+    chmod +x /root/aleo/*
+    chmod +x /root/aleo/f2pool/*
+    systemctl daemon-reload
+    systemctl enable mh_aleo  >> /dev/null
+    systemctl restart mh_aleo  &   
+
+
 }
 
 
@@ -164,17 +180,17 @@ inst_aleo_f2_cn(){
     systemctl stop mh_aleo  >> /dev/null
     killall aleo-prover-cuda
                                                         
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo.sh   -O  /root/aleo/aleo.sh
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/inst.sh   -O  /root/aleo/inst.sh
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/mh_aleo.service   -O  /lib/systemd/system/mh_aleo.service
-    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo-prover-cuda   -O  /root/aleo/aleo-prover-cuda
-    
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo-f2.sh   -O  /root/aleo/f2pool/aleo-f2.sh
+    wget  --no-check-certificate  http://down.minerhome.org/aleo/data/f2pool/aleo-prover-cuda   -O  /root/aleo/f2pool/aleo-prover-cuda
+
     chmod +x /root/aleo/*
-    systemctl daemon-reload
-    systemctl enable mh_aleo  >> /dev/null
-    systemctl restart mh_aleo  &   
+    chmod +x /root/aleo/f2pool/*
+    # systemctl daemon-reload
+    # systemctl enable mh_aleo  >> /dev/null
+    # systemctl restart mh_aleo  &   
 
 }
+
 
 
 
@@ -189,11 +205,12 @@ echo -e "\n"
 echo -e "\n" 
 echo "========================================================================================="
 echo "安装aleo挖矿软件  鱼池 以后会增加其它池 - 矿工之家 - https://minerhome.org"
-echo "默认安装到 /aleo"
+echo "默认安装到 /root/aleo"
 echo "安装完成后请自己修改你的挖矿帐号"
+echo "查看挖矿情况  tail -f /root/aleo/prover.log"
 echo "如果安装不成功，则重启服务器后重新安装"
 echo "出现各种选择，请按 确认/OK"
-echo "  1、安装(默认安装到/aleo) - 安装完记得重启服务器 - 软件开机会自动启动，后台守护运行"
+echo "  1、安装(默认安装到/root/aleo) - 安装完记得重启服务器 - 软件开机会自动启动，后台守护运行"
 echo "  2、卸载 - 删除本软件"
 echo "  3、重启电脑"
 echo "========================================================================================="

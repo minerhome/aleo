@@ -8,8 +8,8 @@ POOL="127.0.0.1:10655"
 
 
 WORKSPACE=$PWD
-LOG_PATH="$WORKSPACE/prover.log"
-APP_PATH="$WORKSPACE/aleo-prover-cuda"
+LOG_PATH="/root/aleo/prover.log"
+APP_PATH="/root/aleo/f2pool/aleo-prover-cuda"
 
 
 cpu_cores=$(lscpu | grep '^CPU(s):' | awk '{print $2}')
